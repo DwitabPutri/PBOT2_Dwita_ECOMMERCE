@@ -35,4 +35,28 @@ public class Post {
         }
         return rowsAffected + " rows inserted!";
     }
+
+    public String postOrders(JSONObject requestBodyJson){
+        int buyer = requestBodyJson.optInt("buyer");
+        int note = requestBodyJson.optInt("note");
+        int total = requestBodyJson.optInt("total");
+        int discount = requestBodyJson.optInt("discount");
+        String is_paid = requestBodyJson.optString("is_paid");
+        PreparedStatement statement = null;
+        int rowsAffected = 0;
+        String query = "INSERT INTO orders(buyer, note, total, discount, is_paid) VALUES(?,?,?,?,?)";
+        try {
+            statement = connectDatabase.getConnection().prepareStatement(query);
+            statement.setInt(1, buyer);
+            statement.setInt(2, note);
+            statement.setInt(3, total);
+            statement.setInt(4, discount);
+            statement.setString(5, is_paid);
+            rowsAffected = statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return rowsAffected + " rows inserted!";
+    }
+
 }
