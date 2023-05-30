@@ -3,12 +3,13 @@ package org.example;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
-import java.util.concurrent.Executor;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import java.util.concurrent.Executors;
+import java.io.InputStream;
 
 public class Server {
     public void startServer() throws IOException {
@@ -40,6 +41,12 @@ public class Server {
             outputStream.write(response.getBytes());
             outputStream.flush();
             outputStream.close();
+        }
+
+        private JSONObject parseRequestBody(InputStream requestBody) throws IOException{
+            byte[] requestBodyBytes = requestBody.readAllBytes();
+            String requestBodyString = new String(requestBodyBytes);
+            return new JSONObject(requestBodyString);
         }
     }
 }
