@@ -11,6 +11,7 @@ public class Post {
         this.connectDatabase = connectDatabase;
     }
 
+    //untuk post users
     public String postUsers(JSONObject requestBodyJson) {
         String firstName = requestBodyJson.optString("first_name");
         String lastName = requestBodyJson.optString("last_name");
@@ -34,6 +35,7 @@ public class Post {
         return pesan;
     }
 
+    //untuk post orders
     public String postOrders(JSONObject requestBodyJson){
         int buyer = requestBodyJson.optInt("buyer");
         int note = requestBodyJson.optInt("note");
@@ -57,6 +59,7 @@ public class Post {
         return pesan;
     }
 
+    //untuk post products
     public String postProducts(JSONObject requestBodyJson){
         int seller = requestBodyJson.optInt("seller");
         String title = requestBodyJson.optString("title");
@@ -80,6 +83,7 @@ public class Post {
         return pesan;
     }
 
+    //untuk post addresses
     public String postAddresses(JSONObject requestBodyJson){
         int users = requestBodyJson.optInt("users");
         String type = requestBodyJson.optString("type");
@@ -107,6 +111,7 @@ public class Post {
         return pesan;
     }
 
+    //untuk post order details
     public String postOrderDetails(JSONObject requestBodyJson){
         int product = requestBodyJson.optInt("product");
         int quantity= requestBodyJson.optInt("quantity");
@@ -126,6 +131,7 @@ public class Post {
         return pesan;
     }
 
+    //untuk post review
     public String postReview(JSONObject requestBodyJson){
         int order = requestBodyJson.optInt("order");
         int star = requestBodyJson.optInt("star");
