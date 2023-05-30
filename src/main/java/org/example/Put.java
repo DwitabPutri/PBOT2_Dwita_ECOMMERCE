@@ -1,14 +1,6 @@
 package org.example;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONString;
-
-import javax.xml.crypto.Data;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.*;
-import java.util.HashMap;
 
 public class Put {
     private ConnectDatabase connectDatabase;
@@ -23,7 +15,7 @@ public class Put {
         String phoneNumber = requestBodyJson.optString("phone_number");
         String type = requestBodyJson.optString("type");
         PreparedStatement statement = null;
-        int rowsAffected = 0;
+        String pesan = "Data Berhasil Diperbarui";
 
         String query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, phone_number = ?, type = ? WHERE id=" + userId;
         try {
@@ -33,11 +25,10 @@ public class Put {
             statement.setString(3, email);
             statement.setString(4, phoneNumber);
             statement.setString(5, type);
-            rowsAffected = statement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return rowsAffected + " rows updated!";
+        return pesan;
     }
 
     public String putOrders(JSONObject requestBodyJson){
@@ -70,7 +61,7 @@ public class Put {
         String price = requestBodyJson.optString("price");
         int stock = requestBodyJson.optInt("stock");
         PreparedStatement statement = null;
-        int rowsAffected = 0;
+        String pesan = "Data Berhasil Diperbarui";
 
         String query = "UPDATE products SET seller = ?, title = ?, description = ?, price = ?, stock = ? WHERE id=" + userId;
         try {
@@ -80,11 +71,10 @@ public class Put {
             statement.setString(3, description);
             statement.setString(4, price);
             statement.setInt(5, stock);
-            rowsAffected = statement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return rowsAffected + " rows updated!";
+        return pesan;
     }
 
 }

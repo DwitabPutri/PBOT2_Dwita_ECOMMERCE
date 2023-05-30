@@ -38,34 +38,52 @@ public class Server {
             String method = exchange.getRequestMethod();
             String[] path = exchange.getRequestURI().getPath().split("/");
             String query = exchange.getRequestURI().getQuery();
-            String response = "";
+            String data= "";
             if (method.equals("GET")) {
                 if(path[1].equals("users")){
-                    response = get.getUsersTertentu(path);
+                    data = get.getUsers(path);
+                }
+                else if(path[1].equals("product")){
+                    data = get.getProducts(path);
+                }
+                else if(path[1].equals("orders")){
+                    data = get.getOrders(path);
+                }
+                else if(path[1].equals("addresses")){
+                    data = get.getAddresses(path);
+                }
+                else if(path[1].equals("order_details")){
+                    data = get.getOrderDetails(path);
+                }
+                else if(path[1].equals("review")){
+                    data = get.getReview(path);
                 }
 
             } else if (method.equals("DELETE")) {
                 if(path[1].equals("users")){
-                    response = delete.deleteData(Integer.parseInt(path[2]));
+                    data = delete.deleteData(Integer.parseInt(path[2]));
+                }
+                else if(path[1].equals("orders")){
+                    data = delete.deleteData(Integer.parseInt(path[2]));
                 }
 
             } else if (method.equals("POST")) {
                 if(path[1].equals("users")){
                     JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
-                    response = post.postUsers(requestBodyJson);
+                    data = post.postUsers(requestBodyJson);
                 }
 
             } else if (method.equals("PUT")) {
                 if(path[1].equals("users")){
                     JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
-                    response = put.putUsers(path[2], requestBodyJson);
+                    data = put.putUsers(path[2], requestBodyJson);
                 }
 
             }
             OutputStream outputStream = exchange.getResponseBody();
             exchange.getResponseHeaders().set("Content-Type", "application/json");
-            exchange.sendResponseHeaders(200, response.length());
-            outputStream.write(response.getBytes());
+            exchange.sendResponseHeaders(200, data.length());
+            outputStream.write(data.getBytes());
             outputStream.flush();
             outputStream.close();
         }
