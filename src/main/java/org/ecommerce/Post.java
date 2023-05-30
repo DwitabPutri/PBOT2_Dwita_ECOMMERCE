@@ -3,6 +3,7 @@ import org.json.JSONObject;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+//untuk menghandle post
 public class Post {
     private ConnectDatabase connectDatabase;
 

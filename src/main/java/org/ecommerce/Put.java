@@ -2,12 +2,14 @@ package org.ecommerce;
 import org.json.JSONObject;
 import java.sql.*;
 
+//untuk menghandle put
 public class Put {
     private ConnectDatabase connectDatabase;
 
     public Put(ConnectDatabase connectDatabase){
         this.connectDatabase = connectDatabase;
     }
+    //untuk put users
     public String putUsers(String id, JSONObject requestBodyJson){
         String firstName = requestBodyJson.optString("first_name");
         String lastName = requestBodyJson.optString("last_name");
@@ -31,6 +33,7 @@ public class Put {
         return pesan;
     }
 
+    //untuk put orders
     public String putOrders(String id, JSONObject requestBodyJson){
         int buyer = requestBodyJson.optInt("buyer");
         int note = requestBodyJson.optInt("note");
@@ -54,6 +57,7 @@ public class Put {
         return pesan;
     }
 
+    //untuk put products
     public String putProducts(String id, JSONObject requestBodyJson){
         int seller = requestBodyJson.optInt("seller");
         String title = requestBodyJson.optString("title");
@@ -77,6 +81,7 @@ public class Put {
         return pesan;
     }
 
+    //untuk put review
     public String putReview(String id, JSONObject requestBodyJson){
         int order = requestBodyJson.optInt("order");
         int star = requestBodyJson.optInt("star");
@@ -96,6 +101,7 @@ public class Put {
         return pesan;
     }
 
+    //untuk put order details
     public String putOrderDetails(String id, JSONObject requestBodyJson){
         int product = requestBodyJson.optInt("product");
         int quantity= requestBodyJson.optInt("quantity");
@@ -115,6 +121,7 @@ public class Put {
         return pesan;
     }
 
+    //untuk put addresses
     public String putAddresses(String id, JSONObject requestBodyJson){
         int users = requestBodyJson.optInt("users");
         String type = requestBodyJson.optString("type");

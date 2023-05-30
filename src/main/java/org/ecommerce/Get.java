@@ -52,7 +52,7 @@ public class Get {
         return data;
     }
 
-
+    //untuk get product
     public String getProducts(String[] path){
         String data = "";
         if(path.length == 2){
@@ -94,6 +94,7 @@ public class Get {
         return jsonArray.toString();
     }
 
+    //untuk get orders
     public String getOrders(String[] path){
         String data = "";
         if(path.length == 2){
@@ -104,6 +105,7 @@ public class Get {
         return data;
     }
 
+    //untuk get orders tertentu
     public String getOrdersTertentu(int idBuyer){
         JSONArray jsonArray = new JSONArray();
         String query = "SELECT * FROM orders WHERE buyer=" + idBuyer;
@@ -126,6 +128,7 @@ public class Get {
         return jsonArray.toString();
     }
 
+    //untuk get addresses
     public String getAddresses(String[] path){
         String data = "";
         if(path.length == 2){
@@ -159,6 +162,7 @@ public class Get {
         return jsonArray.toString();
     }
 
+    //untuk get orderdetails
     public String getOrderDetails(String[] path){
         String data = "";
         if(path.length == 2){
@@ -188,6 +192,7 @@ public class Get {
         return jsonArray.toString();
     }
 
+    //untuk getreview
     public String getReview(String[] path){
         String data = "";
         if(path.length == 2){
