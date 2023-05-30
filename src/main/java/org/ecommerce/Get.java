@@ -3,6 +3,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.sql.*;
 
+//digunakan untuk menghandle permintaan get
 public class Get {
     private ConnectDatabase connectDatabase;
 
@@ -12,14 +13,14 @@ public class Get {
     public String getUsersTertentu(int idUser){
         JSONArray jsonArray = new JSONArray();
         String query = "";
+        //kondisi untuk menampilkan data users
         if(idUser == 0){
             query = "SELECT * FROM users";
         }
+        //jika kondisi terpenuhi, maka query yang dijalankan adalah untuk
+        // menampilkan semua data dari users bertipe buyer
         else if(idUser == -1){
             query = "SELECT * FROM users WHERE type='Buyer'";
-        }
-        else if(idUser == -2){
-            query = "SELECT * FROM users WHERE type='Seller'";
         }
 
         try (Connection connection = connectDatabase.getConnection()){
