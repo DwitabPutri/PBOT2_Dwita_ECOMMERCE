@@ -125,4 +125,23 @@ public class Post {
         return pesan;
     }
 
+    public String postReview(JSONObject requestBodyJson){
+        int order = requestBodyJson.optInt("order");
+        int star = requestBodyJson.optInt("star");
+        String description = requestBodyJson.optString("description");
+        PreparedStatement statement = null;
+        String pesan = "Data Berhasil Ditambahkan";
+
+        String query = "INSERT INTO reviews(order, star, description) VALUES(?,?,?)";
+        try {
+            statement = connectDatabase.getConnection().prepareStatement(query);
+            statement.setInt(1, order);
+            statement.setInt(2, star);
+            statement.setString(3, description);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return pesan;
+    }
+
 }

@@ -88,7 +88,7 @@ public class Server {
                 }
                 else if(path[1].equals("reviews")){
                     JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
-                    //data = post.postReview(requestBodyJson);
+                    data = post.postReview(requestBodyJson);
                 }
                 else if(path[1].equals("order_details")){
                     JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
