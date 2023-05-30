@@ -1,4 +1,4 @@
-package org.example;
+package org.ecommerce;
 import java.sql.DriverManager;
 import java.sql.*;
 public class ConnectDatabase {

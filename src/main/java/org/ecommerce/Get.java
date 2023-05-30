@@ -1,4 +1,4 @@
-package org.example;
+package org.ecommerce;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.sql.*;
