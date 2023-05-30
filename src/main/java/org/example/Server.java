@@ -100,7 +100,7 @@ public class Server {
                 }
                 else if(path[1].equals("addresses")){
                     JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
-                    //data = post.postAddresses(requestBodyJson);
+                    data = post.postAddresses(requestBodyJson);
                 }
 
             } else if (method.equals("PUT")) {
