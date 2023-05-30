@@ -90,7 +90,7 @@ public class Post {
         PreparedStatement statement = null;
         String pesan = "Data Berhasil Ditambahkan";
 
-        String query = "INSERT INTO addresses(users, type, line1, line2, city, province, postcode) VALUES(?,?,?,?,?)";
+        String query = "INSERT INTO addresses(users, type, line1, line2, city, province, postcode) VALUES(?,?,?,?,?,?,?)";
         try {
             statement = connectDatabase.getConnection().prepareStatement(query);
             statement.setInt(1, users);
@@ -100,6 +100,25 @@ public class Post {
             statement.setString(5, city);
             statement.setString(6, province);
             statement.setString(7, postcode);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return pesan;
+    }
+
+    public String postOrderDetails(JSONObject requestBodyJson){
+        int product = requestBodyJson.optInt("product");
+        int quantity= requestBodyJson.optInt("quantity");
+        int price = requestBodyJson.optInt("price");
+        PreparedStatement statement = null;
+        String pesan = "Data Berhasil Ditambahkan";
+
+        String query = "INSERT INTO order_details(product, quantity, price) VALUES(?,?,?)";
+        try {
+            statement = connectDatabase.getConnection().prepareStatement(query);
+            statement.setInt(1,product);
+            statement.setInt(2, quantity);
+            statement.setInt(3, price);
         }catch (SQLException e){
             e.printStackTrace();
         }
