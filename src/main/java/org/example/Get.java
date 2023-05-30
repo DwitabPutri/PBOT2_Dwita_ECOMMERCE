@@ -18,6 +18,9 @@ public class Get {
         else if(idUser == -1){
             query = "SELECT * FROM users WHERE type='Buyer'";
         }
+        else if(idUser == -2){
+            query = "SELECT * FROM users WHERE type='Seller'";
+        }
 
         try (Connection connection = connectDatabase.getConnection()){
             Statement statement = connection.createStatement();
@@ -134,18 +137,19 @@ public class Get {
 
     public String getAdressesTertentu(int idUser){
         JSONArray jsonArray = new JSONArray();
-        String query = "SELECT * FROM addresses WHERE buyer=" + idUser;
+        String query = "SELECT * FROM addresses WHERE users=" + idUser;
         try (Connection connection = connectDatabase.getConnection()){
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()){
                 JSONObject jsonData = new JSONObject();
-                jsonData.put("id", rs.getInt("id"));
-                jsonData.put("buyer", rs.getInt("buyer"));
-                jsonData.put("note", rs.getInt("note"));
-                jsonData.put("total", rs.getInt("total"));
-                jsonData.put("discount", rs.getInt("discount"));
-                jsonData.put("is_paid", rs.getString("is_paid"));
+                jsonData.put("users", rs.getInt("users"));
+                jsonData.put("type", rs.getString("type"));
+                jsonData.put("line1", rs.getString("line1"));
+                jsonData.put("line2", rs.getString("line2"));
+                jsonData.put("city", rs.getString("city"));
+                jsonData.put("province", rs.getString("province"));
+                jsonData.put("postcode", rs.getString("postcode"));
                 jsonArray.put(jsonData);
             }
         }catch (SQLException e){
@@ -164,20 +168,17 @@ public class Get {
         return data;
     }
 
-    public String getOrderDetailsTertentu(int idOrder){
+    public String getReviewTertentu(int idReview){
         JSONArray jsonArray = new JSONArray();
-        String query = "SELECT * FROM order_details WHERE buyer=" + idOrder;
+        String query = "SELECT * FROM reviews WHERE order=" + idReview;
         try (Connection connection = connectDatabase.getConnection()){
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()){
                 JSONObject jsonData = new JSONObject();
-                jsonData.put("id", rs.getInt("id"));
-                jsonData.put("buyer", rs.getInt("buyer"));
-                jsonData.put("note", rs.getInt("note"));
-                jsonData.put("total", rs.getInt("total"));
-                jsonData.put("discount", rs.getInt("discount"));
-                jsonData.put("is_paid", rs.getString("is_paid"));
+                jsonData.put("order", rs.getInt("order"));
+                jsonData.put("star", rs.getInt("star"));
+                jsonData.put("description", rs.getString("description"));
                 jsonArray.put(jsonData);
             }
         }catch (SQLException e){
@@ -196,20 +197,17 @@ public class Get {
         return data;
     }
 
-    public String getReviewTertentu(int idReview){
+    public String getOrderDetailsTertentu(int idOrder){
         JSONArray jsonArray = new JSONArray();
-        String query = "SELECT * FROM review WHERE buyer=" + idReview;
+        String query = "SELECT * FROM order_details WHERE buyer=" + idOrder;
         try (Connection connection = connectDatabase.getConnection()){
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()){
                 JSONObject jsonData = new JSONObject();
-                jsonData.put("id", rs.getInt("id"));
-                jsonData.put("buyer", rs.getInt("buyer"));
-                jsonData.put("note", rs.getInt("note"));
-                jsonData.put("total", rs.getInt("total"));
-                jsonData.put("discount", rs.getInt("discount"));
-                jsonData.put("is_paid", rs.getString("is_paid"));
+                jsonData.put("product", rs.getInt("product"));
+                jsonData.put("quantity", rs.getInt("quantity"));
+                jsonData.put("price", rs.getInt("price"));
                 jsonArray.put(jsonData);
             }
         }catch (SQLException e){
