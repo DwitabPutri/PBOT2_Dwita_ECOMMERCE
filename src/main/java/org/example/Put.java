@@ -38,7 +38,7 @@ public class Put {
         int discount = requestBodyJson.optInt("discount");
         String is_paid = requestBodyJson.optString("is_paid");
         PreparedStatement statement = null;
-        int rowsAffected = 0;
+        String pesan = "Data Berhasil Diperbarui";
 
         String query = "UPDATE products SET buyer = ?, note = ?, total = ?, discount = ?, is_paid = ? WHERE id=" + userId;
         try {
@@ -48,11 +48,10 @@ public class Put {
             statement.setInt(3, total);
             statement.setInt(4, discount);
             statement.setString(5, is_paid);
-            rowsAffected = statement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return rowsAffected + " rows inserted!";
+        return pesan;
     }
 
     public String putProducts(String userId, JSONObject requestBodyJson){
@@ -72,6 +71,71 @@ public class Put {
             statement.setString(3, description);
             statement.setString(4, price);
             statement.setInt(5, stock);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return pesan;
+    }
+
+    public String putReview(String userId, JSONObject requestBodyJson){
+        int order = requestBodyJson.optInt("order");
+        int star = requestBodyJson.optInt("star");
+        String description = requestBodyJson.optString("description");
+        PreparedStatement statement = null;
+        String pesan = "Data Berhasil Diperbarui";
+
+        String query = "UPDATE reviews SET order = ?, star = ?, description = ? WHERE id=" + userId;
+        try {
+            statement = connectDatabase.getConnection().prepareStatement(query);
+            statement.setInt(1, order);
+            statement.setInt(2, star);
+            statement.setString(3, description);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return pesan;
+    }
+
+    public String putOrderDetails(String userId, JSONObject requestBodyJson){
+        int product = requestBodyJson.optInt("product");
+        int quantity= requestBodyJson.optInt("quantity");
+        int price = requestBodyJson.optInt("price");
+        PreparedStatement statement = null;
+        String pesan = "Data Berhasil Diperbarui";
+
+        String query = "UPDATE order_details SET product = ?, quantity = ?, price = ? WHERE id=" + userId;
+        try {
+            statement = connectDatabase.getConnection().prepareStatement(query);
+            statement.setInt(1, product);
+            statement.setInt(2, quantity);
+            statement.setInt(3, price);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return pesan;
+    }
+
+    public String putAddresses(String userId, JSONObject requestBodyJson){
+        int users = requestBodyJson.optInt("users");
+        String type = requestBodyJson.optString("type");
+        String line1 = requestBodyJson.optString("line1");
+        String line2 = requestBodyJson.optString("line2");
+        String city = requestBodyJson.optString("city");
+        String province =requestBodyJson.optString("province");
+        String postcode = requestBodyJson.optString("postcode");
+        PreparedStatement statement = null;
+        String pesan = "Data Berhasil Diperbarui";
+
+        String query = "UPDATE addresses SET users = ?, type = ?, line1 = ?, line2 = ?, city = ?, province = ?, postcode = ? WHERE id=" + userId;
+        try {
+            statement = connectDatabase.getConnection().prepareStatement(query);
+            statement.setInt(1, users);
+            statement.setString(2, type);
+            statement.setString(3, line1);
+            statement.setString(4, line2);
+            statement.setString(5, city);
+            statement.setString(6, province);
+            statement.setString(7, postcode);
         }catch (SQLException e){
             e.printStackTrace();
         }

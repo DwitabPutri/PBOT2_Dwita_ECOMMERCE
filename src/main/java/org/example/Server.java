@@ -112,7 +112,7 @@ public class Server {
                 }
                 else if(path[1].equals("addresses")){
                     JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
-                    //data = put.putAddresses(path[2], requestBodyJson);
+                    data = put.putAddresses(path[2], requestBodyJson);
                 }
                 else if(path[1].equals("product")){
                     JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
@@ -124,11 +124,11 @@ public class Server {
                 }
                 else if(path[1].equals("order_details")){
                     JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
-                    //data = put.putOrderDetails(path[2], requestBodyJson);
+                    data = put.putOrderDetails(path[2], requestBodyJson);
                 }
                 else if(path[1].equals("reviews")){
                     JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
-                    //data = put.putReview(path[2], requestBodyJson);
+                    data = put.putReview(path[2], requestBodyJson);
                 }
 
             }
