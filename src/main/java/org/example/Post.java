@@ -1,7 +1,5 @@
 package org.example;
-
 import org.json.JSONObject;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
