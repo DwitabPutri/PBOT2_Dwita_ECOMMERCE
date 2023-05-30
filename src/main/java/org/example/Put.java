@@ -31,7 +31,7 @@ public class Put {
         return pesan;
     }
 
-    public String putOrders(JSONObject requestBodyJson){
+    public String putOrders(String userId, JSONObject requestBodyJson){
         int buyer = requestBodyJson.optInt("buyer");
         int note = requestBodyJson.optInt("note");
         int total = requestBodyJson.optInt("total");
@@ -39,7 +39,8 @@ public class Put {
         String is_paid = requestBodyJson.optString("is_paid");
         PreparedStatement statement = null;
         int rowsAffected = 0;
-        String query = "INSERT INTO orders(buyer, note, total, discount, is_paid) VALUES(?,?,?,?,?)";
+
+        String query = "UPDATE products SET buyer = ?, note = ?, total = ?, discount = ?, is_paid = ? WHERE id=" + userId;
         try {
             statement = connectDatabase.getConnection().prepareStatement(query);
             statement.setInt(1, buyer);

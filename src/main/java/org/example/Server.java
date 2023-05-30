@@ -55,7 +55,7 @@ public class Server {
                 else if(path[1].equals("order_details")){
                     data = get.getOrderDetails(path);
                 }
-                else if(path[1].equals("review")){
+                else if(path[1].equals("reviews")){
                     data = get.getReview(path);
                 }
 
@@ -66,17 +66,69 @@ public class Server {
                 else if(path[1].equals("orders")){
                     data = delete.deleteData(Integer.parseInt(path[2]));
                 }
+                else if(path[1].equals("product")){
+                    data = delete.deleteData(Integer.parseInt(path[2]));
+                }
+                else if(path[1].equals("reviews")){
+                    data = delete.deleteData(Integer.parseInt(path[2]));
+                }
+                else if(path[1].equals("order_details")){
+                    data = delete.deleteData(Integer.parseInt(path[2]));
+                }
+                else if(path[1].equals("addresses")){
+                    data = delete.deleteData(Integer.parseInt(path[2]));
+                }
 
             } else if (method.equals("POST")) {
                 if(path[1].equals("users")){
                     JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
                     data = post.postUsers(requestBodyJson);
                 }
+                else if(path[1].equals("orders")){
+                    JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
+                    data = post.postOrders(requestBodyJson);
+                }
+                else if(path[1].equals("reviews")){
+                    JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
+                    //data = post.postReview(requestBodyJson);
+                }
+                else if(path[1].equals("order_details")){
+                    JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
+                    //data = post.postReview(requestBodyJson);
+                }
+                else if(path[1].equals("products")){
+                    JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
+                    //data = post.postProducts(requestBodyJson);
+                }
+                else if(path[1].equals("addresses")){
+                    JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
+                    //data = post.postAddresses(requestBodyJson);
+                }
 
             } else if (method.equals("PUT")) {
                 if(path[1].equals("users")){
                     JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
                     data = put.putUsers(path[2], requestBodyJson);
+                }
+                else if(path[1].equals("addresses")){
+                    JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
+                    //data = put.putAddresses(path[2], requestBodyJson);
+                }
+                else if(path[1].equals("product")){
+                    JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
+                    data = put.putProducts(path[2], requestBodyJson);
+                }
+                else if(path[1].equals("orders")){
+                    JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
+                    data = put.putOrders(path[2], requestBodyJson);
+                }
+                else if(path[1].equals("order_details")){
+                    JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
+                    //data = put.putOrderDetails(path[2], requestBodyJson);
+                }
+                else if(path[1].equals("reviews")){
+                    JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
+                    //data = put.putReview(path[2], requestBodyJson);
                 }
 
             }
