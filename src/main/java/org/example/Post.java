@@ -99,7 +99,7 @@ public class Post {
             statement.setString(4, line2);
             statement.setString(5, city);
             statement.setString(6, province);
-            statement.setString(6, postcode);
+            statement.setString(7, postcode);
         }catch (SQLException e){
             e.printStackTrace();
         }

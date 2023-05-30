@@ -92,11 +92,11 @@ public class Server {
                 }
                 else if(path[1].equals("order_details")){
                     JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
-                    //data = post.postReview(requestBodyJson);
+                    //data = post.postOrderDetails(requestBodyJson);
                 }
                 else if(path[1].equals("products")){
                     JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
-                    //data = post.postProducts(requestBodyJson);
+                    data = post.postProducts(requestBodyJson);
                 }
                 else if(path[1].equals("addresses")){
                     JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
