@@ -12,6 +12,19 @@ import java.util.concurrent.Executors;
 import java.io.InputStream;
 
 public class Server {
+    private Get get;
+    private Put put;
+    private Post post;
+    private Delete delete;
+
+    public Server(){
+        ConnectDatabase connectDatabase = new ConnectDatabase();
+        get = new Get(connectDatabase);
+        delete = new Delete(connectDatabase);
+        post = new Post(connectDatabase);
+        put = new Put(connectDatabase);
+    }
+
     public void startServer() throws IOException {
         HttpServer httpServer = HttpServer.create(new InetSocketAddress("localhost", 8074), 0);
         httpServer.createContext("/", new EcomHandler());
@@ -27,12 +40,26 @@ public class Server {
             String query = exchange.getRequestURI().getQuery();
             String response = "";
             if (method.equals("GET")) {
+                if(path[1].equals("users")){
+                    response = get.getUsersTertentu(path);
+                }
 
             } else if (method.equals("DELETE")) {
+                if(path[1].equals("users")){
+                    response = delete.deleteData(Integer.parseInt(path[2]));
+                }
 
             } else if (method.equals("POST")) {
+                if(path[1].equals("users")){
+                    JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
+                    response = post.postUsers(requestBodyJson);
+                }
 
             } else if (method.equals("PUT")) {
+                if(path[1].equals("users")){
+                    JSONObject requestBodyJson = parseRequestBody(exchange.getRequestBody());
+                    response = put.putUsers(path[2], requestBodyJson);
+                }
 
             }
             OutputStream outputStream = exchange.getResponseBody();
